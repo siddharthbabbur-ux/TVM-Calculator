@@ -1,0 +1,20 @@
+Folder PATH listing
+Volume serial number is 9853-A936
+C:.
+¦   .gitignore
+¦   index.html
+¦   LICENSE
+¦   README.md
+¦   tree.txt
+¦   
++---assets
++---css
+¦       style.css
+¦       
++---data
++---docs
+¦       PROJECT_DOCUMENTATION.md
+¦       
++---js
+        app.js
+        

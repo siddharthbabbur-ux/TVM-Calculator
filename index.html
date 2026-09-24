@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="TVM Finance Calculator for Future Value, Present Value, Simple Interest, Compound Interest, EMI, Loan Amortization and Scenario Analysis."
+  >
+
+  <meta
+    name="keywords"
+    content="TVM Calculator, Finance Calculator, EMI Calculator, Future Value, Present Value, Compound Interest, Loan Amortization"
+  >
+
+  <meta name="author" content="TVM Finance Calculator">
+
+  <title>TVM Finance Calculator</title>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="hero">
+
+    <div class="hero-inner">
+
+      <div>
+
+        <p class="eyebrow">
+          BS3210 • Finance for Engineers, Designers and Professionals
+        </p>
+
+        <h1>
+          Time Value of Money Calculator
+        </h1>
+
+        <p class="subtitle">
+          A professional HTML-based application for TVM calculations,
+          EMI, loan amortization and interest-rate scenario analysis.
+        </p>
+
+      </div>
+
+      <div class="badge">
+        Assignment 1
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+
+  <main class="container">
+
+
+    <!-- INTRODUCTION -->
+
+    <section class="intro card">
+
+      <h2>
+        Financial Calculator Dashboard
+      </h2>
+
+      <p>
+        Choose a calculator below. Enter valid values and the
+        application will calculate the result instantly.
+      </p>
+
+
+      <!-- Navigation Buttons -->
+
+      <div class="nav-grid">
+
+        <button onclick="showSection('fv')">
+          Future Value
+        </button>
+
+        <button onclick="showSection('pv')">
+          Present Value
+        </button>
+
+        <button onclick="showSection('simple')">
+          Simple Interest
+        </button>
+
+        <button onclick="showSection('compound')">
+          Compound Interest
+        </button>
+
+        <button onclick="showSection('emi')">
+          EMI
+        </button>
+
+        <button onclick="showSection('amortization')">
+          Amortization
+        </button>
+
+        <button onclick="showSection('scenario')">
+          Scenario Analysis
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         1. FUTURE VALUE
+    ========================== -->
+
+    <section id="fv" class="calculator card active">
+
+      <h2>
+        1. Future Value Calculator
+      </h2>
+
+      <p class="formula">
+        FV = P × (1 + r)<sup>t</sup>
+      </p>
+
+
+      <div class="form-grid">
+
+        <label>
+          Principal Amount
+
+          <input
+            id="fvP"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 10000"
+          >
+        </label>
+
+
+        <label>
+          Annual Interest Rate (%)
+
+          <input
+            id="fvR"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 10"
+          >
+        </label>
+
+
+        <label>
+          Time Period (Years)
+
+          <input
+            id="fvT"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="e.g. 5"
+          >
+        </label>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="calcFV()"
+      >
+        Calculate Future Value
+      </button>
+
+
+      <div
+        id="fvResult"
+        class="result"
+      ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         2. PRESENT VALUE
+    ========================== -->
+
+    <section id="pv" class="calculator card">
+
+      <h2>
+        2. Present Value Calculator
+      </h2>
+
+      <p class="formula">
+        PV = FV / (1 + r)<sup>t</sup>
+      </p>
+
+
+      <div class="form-grid">
+
+        <label>
+          Future Value
+
+          <input
+            id="pvF"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 16105.10"
+          >
+        </label>
+
+
+        <label>
+          Discount Rate (%)
+
+          <input
+            id="pvR"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 10"
+          >
+        </label>
+
+
+        <label>
+          Time Period (Years)
+
+          <input
+            id="pvT"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="e.g. 5"
+          >
+        </label>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="calcPV()"
+      >
+        Calculate Present Value
+      </button>
+
+
+      <div
+        id="pvResult"
+        class="result"
+      ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         3. SIMPLE INTEREST
+    ========================== -->
+
+    <section id="simple" class="calculator card">
+
+      <h2>
+        3. Simple Interest Calculator
+      </h2>
+
+      <p class="formula">
+        SI = P × r × t
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+        Maturity Value = P + SI
+      </p>
+
+
+      <div class="form-grid">
+
+        <label>
+          Principal
+
+          <input
+            id="siP"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 10000"
+          >
+        </label>
+
+
+        <label>
+          Interest Rate (%)
+
+          <input
+            id="siR"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 8"
+          >
+        </label>
+
+
+        <label>
+          Time (Years)
+
+          <input
+            id="siT"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="e.g. 3"
+          >
+        </label>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="calcSimple()"
+      >
+        Calculate
+      </button>
+
+
+      <div
+        id="siResult"
+        class="result"
+      ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         4. COMPOUND INTEREST
+    ========================== -->
+
+    <section id="compound" class="calculator card">
+
+      <h2>
+        4. Compound Interest Calculator
+      </h2>
+
+      <p class="formula">
+        A = P × (1 + r/n)<sup>nt</sup>
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+        CI = A − P
+      </p>
+
+
+      <div class="form-grid">
+
+        <label>
+          Principal
+
+          <input
+            id="ciP"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 10000"
+          >
+        </label>
+
+
+        <label>
+          Rate (%)
+
+          <input
+            id="ciR"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 10"
+          >
+        </label>
+
+
+        <label>
+          Time (Years)
+
+          <input
+            id="ciT"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="e.g. 5"
+          >
+        </label>
+
+
+        <label>
+
+          Compounding Frequency
+
+          <select id="ciN">
+
+            <option value="1">
+              Annually
+            </option>
+
+            <option value="2">
+              Half-yearly
+            </option>
+
+            <option value="4">
+              Quarterly
+            </option>
+
+            <option
+              value="12"
+              selected
+            >
+              Monthly
+            </option>
+
+            <option value="365">
+              Daily
+            </option>
+
+          </select>
+
+        </label>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="calcCompound()"
+      >
+        Calculate
+      </button>
+
+
+      <div
+        id="ciResult"
+        class="result"
+      ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         5. EMI
+    ========================== -->
+
+    <section id="emi" class="calculator card">
+
+      <h2>
+        5. EMI Calculator
+      </h2>
+
+      <p class="formula">
+        EMI = P × r × (1+r)<sup>n</sup> /
+        ((1+r)<sup>n</sup> − 1)
+      </p>
+
+
+      <div class="form-grid">
+
+        <label>
+          Loan Amount
+
+          <input
+            id="emiP"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 500000"
+          >
+        </label>
+
+
+        <label>
+          Interest Rate (% per year)
+
+          <input
+            id="emiR"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 10"
+          >
+        </label>
+
+
+        <label>
+          Loan Tenure (Years)
+
+          <input
+            id="emiT"
+            type="number"
+            min="0.1"
+            step="0.1"
+            placeholder="e.g. 5"
+          >
+        </label>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="calcEMI()"
+      >
+        Calculate EMI
+      </button>
+
+
+      <div
+        id="emiResult"
+        class="result"
+      ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         6. AMORTIZATION
+    ========================== -->
+
+    <section
+      id="amortization"
+      class="calculator card"
+    >
+
+      <h2>
+        6. Loan Amortization Schedule
+      </h2>
+
+      <p>
+        Tenure is entered in years and converted
+        into monthly installments.
+      </p>
+
+
+      <div class="form-grid">
+
+        <label>
+          Loan Amount
+
+          <input
+            id="amP"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 500000"
+          >
+        </label>
+
+
+        <label>
+          Interest Rate (% per year)
+
+          <input
+            id="amR"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 10"
+          >
+        </label>
+
+
+        <label>
+          Tenure (Years)
+
+          <input
+            id="amT"
+            type="number"
+            min="0.1"
+            step="0.1"
+            placeholder="e.g. 5"
+          >
+        </label>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="calcAmortization()"
+      >
+        Generate Schedule
+      </button>
+
+
+      <div
+        id="amSummary"
+        class="result"
+      ></div>
+
+
+      <div class="table-wrap">
+
+        <table id="amTable">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Month
+              </th>
+
+              <th>
+                Opening Balance
+              </th>
+
+              <th>
+                Interest
+              </th>
+
+              <th>
+                Principal Repaid
+              </th>
+
+              <th>
+                EMI
+              </th>
+
+              <th>
+                Closing Balance
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         7. SCENARIO ANALYSIS
+    ========================== -->
+
+    <section
+      id="scenario"
+      class="calculator card"
+    >
+
+      <h2>
+        7. Scenario Analysis
+      </h2>
+
+      <p>
+        Compare EMI outcomes for the required
+        interest rates: 8%, 10%, 12% and 15%.
+      </p>
+
+
+      <div class="form-grid">
+
+        <label>
+          Loan Amount
+
+          <input
+            id="scP"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 500000"
+          >
+        </label>
+
+
+        <label>
+          Loan Tenure (Years)
+
+          <input
+            id="scT"
+            type="number"
+            min="0.1"
+            step="0.1"
+            placeholder="e.g. 5"
+          >
+        </label>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="calcScenario()"
+      >
+        Compare Scenarios
+      </button>
+
+
+      <div class="table-wrap">
+
+        <table id="scTable">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Interest Rate
+              </th>
+
+              <th>
+                Monthly EMI
+              </th>
+
+              <th>
+                Total Payment
+              </th>
+
+              <th>
+                Total Interest
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <p class="note">
+        Scenario analysis uses the same loan amount
+        and tenure for all four rates so the effect
+        of changing the interest rate can be compared.
+      </p>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <p>
+      TVM Calculator • BS3210 Assignment 1
+      • HTML, CSS &amp; JavaScript
+    </p>
+
+  </footer>
+
+
+
+  <!-- JavaScript -->
+
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
